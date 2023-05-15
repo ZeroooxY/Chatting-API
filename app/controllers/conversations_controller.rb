@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
     #before_action :authenticate
-    before_action :set_recipient, only: [:show]
+    before_action :set_receiver, only: [:show]
 
     def index
       conversations = Conversation.preload(:messages).show_conversations(@current_user.id)
@@ -24,8 +24,8 @@ class ConversationsController < ApplicationController
   
     private
   
-    def set_recipient
-      @recipient = User.find(params[:id])
+    def set_receiver
+      @receiver = User.find(params[:id])
     end
   
     def unread_messages(conversations, user_id)
